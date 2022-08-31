@@ -35,23 +35,23 @@ async function updateBattle(user1,type,numbers){
     if(type==='win'){
         return connection.query(`
         UPDATE fighters
-        SET wins=1
-        WHERE username=$1`
-        , [user1])
+        SET wins=$1
+        WHERE username=$2`
+        , [numbers.wins+1,user1])
     }
     if(type==='loss'){
         return connection.query(`
         UPDATE fighters
-        SET losses=1
-        WHERE username=$1`
-        , [user1])
+        SET losses=$1
+        WHERE username=$2`
+        , [numbers.losses+1,user1])
     }
     if(type==='draw'){
         return connection.query(`
         UPDATE fighters
-        SET draws=1
-        WHERE username=$1`
-        , [user1])
+        SET draws=$1
+        WHERE username=$2`
+        , [numbers.draws+1,user1])
     }
 
     
